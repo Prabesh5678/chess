@@ -1,16 +1,3 @@
-// import { WebSocketServer } from "ws";
-// import { GameManager } from "./gameManager.js";
-
-// const wss = new WebSocketServer({ port: 8080 });
-// const gameManager = new GameManager();
-
-// wss.on("connection", function connection(ws) {
-//   gameManager.addPlayer(ws);
-//   ws.on("close", () => {
-//     gameManager.removePlayer(ws);
-//   });
-// });
-
 import express from "express";
 import http from "http";
 import { WebSocketServer } from "ws";
@@ -35,6 +22,7 @@ const wss = new WebSocketServer({ server });
 const gameManager = new GameManager();
 
 wss.on("connection", function connection(ws) {
+  console.log("New client connected");
   gameManager.addPlayer(ws);
 
   ws.on("close", () => {

@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Chess } from "chess.js";
 import { useNavigate } from "react-router-dom";
 
-const WS_URL = "ws://localhost:8080";
+const WS_URL = "https://chess-1vxo.onrender.com" || "ws://localhost:8080";
 
 const FILES = ["a", "b", "c", "d", "e", "f", "g", "h"];
 const RANKS = ["8", "7", "6", "5", "4", "3", "2", "1"];
@@ -169,7 +169,7 @@ export default function Game() {
 
     const legalTargets = chess
       .moves({ square: from, verbose: true }) //extract legal moves
-      .map((m) => m.to);
+      .map((m) => m.to);// return an arrauy of legal target squares
     if (!legalTargets.includes(to)) return false;
 
     if (isPromotionMove(chess, from, to)) {
@@ -548,7 +548,7 @@ export default function Game() {
                   <span className="text-[10px] text-zinc-600 uppercase tracking-widest mb-0.5">
                     {m.from === color ? "you" : "opponent"}
                   </span>
-                  <span
+                  <span //
                     className={`text-xs px-3 py-1.5 rounded max-w-[95%] break-words leading-relaxed
                     ${m.from === color ? "bg-white text-zinc-950" : "bg-zinc-800 text-zinc-200"}`}
                   >
